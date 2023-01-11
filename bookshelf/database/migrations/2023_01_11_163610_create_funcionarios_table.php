@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->string('name');
+        Schema::create('funcionarios', function (Blueprint $table) {
+            $table->boolean('status')->default(1);
+            
+            // relação do funcionário com o usuário
             $table->string('CPF');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->foreign('CPF')->references('CPF')->on('users')->onDelete('cascade');
+
             $table->primary(['CPF']);
+            $table->timestamps();
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('funcionarios');
     }
 };
