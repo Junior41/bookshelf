@@ -19,6 +19,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => "junior",
+            'CPF' => fake()->unique()->safeEmail(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => \Hash::make('junior123'), // password

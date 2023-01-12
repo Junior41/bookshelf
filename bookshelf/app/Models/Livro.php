@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Livro extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nome',
+        'autor',
+        'codigo',
+        'editora',
+        'capa',
+        'avaliacao',
+        'quantidadeExemplares',
+        'quantidadePag',
+        'categoria_id',
+    ];
+
+    protected $primaryKey = 'codigo';
+
+
+    public function categoria(){
+        return $this->hasOne(Categoria::class, 'categoria_id');
+    }
 }

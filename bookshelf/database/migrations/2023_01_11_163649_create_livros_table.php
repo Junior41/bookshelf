@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("nome");
             $table->string("autor");
             $table->string("editora");
+            $table->string("capa");
 
             $table->integer("avaliacao");
             $table->integer("quantidadeExemplares");
