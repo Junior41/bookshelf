@@ -19,6 +19,15 @@ Cadastrar livro
         <p>{{session('error')}}</p>
     </div>
 @endif
+@if($errors->all() != [])
+  <div class = "alert alert-danger">
+    <ul>
+      @foreach($errors->all() as $erro)
+        <li>{{$erro[0]}}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 <form class="form" @isset($livro) action="/livro/{{$livro->codigo}}" @else action="/livro" @endisset method="POST" enctype="multipart/form-data">
   @isset($livro)
   @method("PUT")

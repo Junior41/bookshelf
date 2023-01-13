@@ -34,4 +34,11 @@ class CadastrarLivroRequest extends FormRequest
             "categoria_id" => ["required"],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            "required" => ['Preencha todos os campos obrigátorios.'],
+        ];
+    }
 }

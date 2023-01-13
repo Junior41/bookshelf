@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CadastrarCategoriaRequest extends FormRequest
+class CadastrarFuncionarioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,19 @@ class CadastrarCategoriaRequest extends FormRequest
     public function rules()
     {
         return [
-            "nome" => ['required'],
-            "faixaEtaria" => ["required"]
+            "name" => ['required'],
+            "CPF" => ['required'],
+            "email" => ['required'],
+            "status" => ['required'],
+            "password" => ['required'],
+            "confirmarSenha" => ['required', 'same:password'],
         ];
     }
+
     public function messages()
     {
         return [
+            "same" => ['O campo senha e confirmação de senha devem ser iguais.'],
             "required" => ['Preencha todos os campos obrigátorios.'],
         ];
     }
