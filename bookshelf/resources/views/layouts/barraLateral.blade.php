@@ -64,6 +64,12 @@
           <div class = "botaoMenu">
             <a href = "/administrador/create">Cadastrar Administrador</a>
           </div>
+          <div class = "botaoMenu">
+            <a href = "/exemplar/create">Cadastrar Exemplar</a>
+          </div>
+          <div class = "botaoMenu">
+            <a href = "/fornecedor/create">Cadastrar Fornecedor</a>
+          </div>
         </div>
 
         <!--

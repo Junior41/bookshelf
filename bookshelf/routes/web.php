@@ -21,6 +21,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 
 
+Route::resource('/fornecedor', App\Http\Controllers\FornecedorController::class);
+
+Route::resource('/exemplar', App\Http\Controllers\ExemplarController::class);
+
 Route::resource('/administrador', App\Http\Controllers\AdministradorController::class);
 
 Route::resource('/funcionario', App\Http\Controllers\FuncionarioController::class);

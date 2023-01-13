@@ -48,6 +48,8 @@
         <a href="/categoria/create">Cadastrar categoria</a>
         <a href="/socio/create">Cadastrar sócio</a>
         <a href="/administrador/create">Cadastrar administrador</a>
+        <a href="/exemplar/create">Cadastrar exemplar</a>
+        <a href="/fornecedor/create">Cadastrar fornecedor</a>
       </div>
 
  
