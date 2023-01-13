@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('exemplars', function (Blueprint $table) {
             $table->id();
-            $table->string("estadoConservacao");
+            $table->integer("estadoConservacao");
             $table->boolean("emprestado")->default(0);
             $table->date("dataEntrega")->nullable();
 

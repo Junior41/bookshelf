@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('fornecedors', function (Blueprint $table) {
             $table->string("CNPJ");
+            $table->string("nome");
+            $table->string("password");
             $table->boolean('status')->default(1);
             $table->string("endereco");
             $table->primary(['CNPJ']);
