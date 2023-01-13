@@ -22,6 +22,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::resource('/funcionario', App\Http\Controllers\FuncionarioController::class);
 
+Route::resource('/socio', App\Http\Controllers\SocioController::class);
+
 Route::resource('/livro', App\Http\Controllers\LivroController::class);
 
 Route::resource('/categoria', App\Http\Controllers\CategoriaController::class);
