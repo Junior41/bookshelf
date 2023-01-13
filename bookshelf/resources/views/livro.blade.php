@@ -94,7 +94,13 @@ Cadastrar livro
     </div>
 
     <div class="buttonSubmit">
-      <button type = "submit">Cadastrar</button>
+      <button type = "submit">
+        @isset($livro)
+        Editar
+        @else
+        Cadastrar
+        @endisset
+      </button>
     </div>
   </div>
 </form>

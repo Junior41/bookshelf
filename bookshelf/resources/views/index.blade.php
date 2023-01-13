@@ -77,8 +77,10 @@
           rapidez, organização e controle de cadastros de todo acervo bibliográfico,
           permitindo a gestão eficiente dos empréstimos de livros.
         </p>
-        <form action="#">
-          <input type="text" placeholder = "pesquisar">
+        <form action="/filtro" method = "POST">
+          @csrf
+          <input type="text" placeholder = "pesquisar" name = "nome" >
+          <button type = "submit"><img src="{{asset('/assets/img/lupa.png')}}" alt="pesquisar"></button>
         </form>
       </div>
       <div class = "img">
@@ -88,219 +90,35 @@
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
       <div class="container-fluid">
-
         <div class="row gy-4 justify-content-center">
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <a href = "#" class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt="">
-              <div class = "titulo">
-                <h5>titulo do livro</h5>
-              </div>
-              <div class = "classificacao">
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela (1).png"></img>
-                <img src = "/assets/img/estrela.png"></img>
-              </div>
-            </a>
-          </div><!-- End Gallery Item -->
-
+          @isset($livros)
+            @foreach ($livros as $livro)
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                  <a href = "#" class="gallery-item h-100">
+                    <div style = "display:flex;justify-content: center;">
+                      <img src= "{{url("storage/{$livro->capa}")}}" class="img-fluid" alt="">
+                    </div>
+                    <div class = "titulo">
+                      <h5>{{$livro->nome}}</h5>
+                    </div>
+                    <div class = "classificacao">
+                      @for($i = 0; $i < 3; $i++)
+                        @if($i < $livro->avaliacao)
+                          <img src = "{{asset('/assets/img/estrela (1).png')}}"></img>
+                        @else
+                          <img src = "{{asset('/assets/img/estrela.png')}}"></img>
+                        @endif
+                      @endfor
+                    </div>
+                  </a>
+                </div><!-- End Gallery Item -->
+            
+            @endforeach
+            <div class = "pagination">
+              {{ $livros->links() }} 
+            </div>
+          @endisset
         </div>
-
       </div>
     </section><!-- End Gallery Section -->
 
