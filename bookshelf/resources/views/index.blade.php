@@ -47,7 +47,7 @@
         <a href="/livro/create">Cadastrar livro</a>
         <a href="/categoria/create">Cadastrar categoria</a>
         <a href="/socio/create">Cadastrar sócio</a>
-        <a href="#">Contact</a>
+        <a href="/administrador/create">Cadastrar administrador</a>
       </div>
 
  
