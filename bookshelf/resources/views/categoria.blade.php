@@ -3,9 +3,9 @@
 
 @section('nomeFormulario')
   @isset($categoria)
-  Editar livro
+  Editar Categoria
   @else
-  Cadastrar Livro
+  Cadastrar Categoria
   @endisset
 @endsection
 
