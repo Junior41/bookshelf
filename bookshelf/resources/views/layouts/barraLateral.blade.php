@@ -61,6 +61,9 @@
           <div class = "botaoMenu">
             <a href = "/socio/create">Cadastrar sócio</a>
           </div>
+          <div class = "botaoMenu">
+            <a href = "/administrador/create">Cadastrar Administrador</a>
+          </div>
         </div>
 
         <!--

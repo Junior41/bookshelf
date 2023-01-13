@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Administrador extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'CPF',
+    ];
+
+    protected $primaryKey = 'CPF';
 }
