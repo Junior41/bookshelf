@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Livro;
-
+use Auth;
 use App\Http\Requests\CadastrarLivroRequest;
 use App\Http\Requests\EditarLivroRequest;
 
@@ -18,7 +18,9 @@ class LivroController extends Controller
     {
         $this->categoria = $categoria;
         $this->livro = $livro;
+        $this->middleware('auth');   
     }
+   
 
     /**
      * Display a listing of the resource.
@@ -37,6 +39,9 @@ class LivroController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $categorias = $this->categoria->all();
         
         if(empty($categorias->toArray())) // retorna para a tela de cadastro de categoria
@@ -53,6 +58,9 @@ class LivroController extends Controller
      */
     public function store(cadastrarLivroRequest $request)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $data = $request->all();
         $data['quantidadeExemplares'] = 0;    
 
@@ -90,6 +98,9 @@ class LivroController extends Controller
      */
     public function edit($codigo)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $livro = $this->livro->where('codigo', $codigo)->first();
         $categorias = $this->categoria->all();
         
@@ -105,6 +116,9 @@ class LivroController extends Controller
      */
     public function update(Request $request, $codigo)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+            
         $data = $request->all();
         $categorias = $this->categoria->all();
 

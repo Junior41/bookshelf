@@ -14,7 +14,6 @@ class Fornecedor extends Model
         'status',
         'endereco',
         'nome',
-        'password',
     ];
 
     protected $primaryKey = 'CNPJ';

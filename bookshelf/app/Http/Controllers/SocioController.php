@@ -7,7 +7,7 @@ use App\Models\Socio;
 
 use App\Http\Requests\CadastrarSocioRequest;
 use App\Http\Requests\EditarSocioRequest;
-
+use Auth;
 use Illuminate\Http\Request;
 
 class SocioController extends Controller
@@ -18,7 +18,10 @@ class SocioController extends Controller
     {
         $this->socio = $socio;
         $this->user = $user;
+        $this->middleware('auth');
+
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,6 +39,9 @@ class SocioController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         return view('socio');
     }
 
@@ -47,10 +53,14 @@ class SocioController extends Controller
      */
     public function store(CadastrarSocioRequest $request)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $dataUser = $request->all();
         $dataSocio['CPF'] = $dataUser['CPF'];
         $dataSocio['endereco'] = $dataUser['endereco'];
         $dataSocio['status'] = $dataUser['status'];
+        $dataUser['acesso'] = 0;
 
         unset($dataUser['confirmarSenha']);
         unset($dataUser['status']);
@@ -96,6 +106,9 @@ class SocioController extends Controller
      */
     public function edit($CPF)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $socio = $this->socio->find($CPF);
         $user = $this->user->find($CPF);
 
@@ -111,6 +124,9 @@ class SocioController extends Controller
      */
     public function update(EditarSocioRequest $request, $cpf)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $user = $this->user->find($cpf);
         $socio = $this->socio->find($cpf);
 
@@ -121,6 +137,7 @@ class SocioController extends Controller
         $datasocio['endereco'] = $dataUser['endereco'];
         unset($dataUser['status']);
         unset($dataUser['endereco']);
+        $dataUser['acesso'] = 0;
 
         $emails_iguais = $this->user->where('email', $dataUser['email'])->first();
         if($emails_iguais && $dataUser['email'] != $user->email)

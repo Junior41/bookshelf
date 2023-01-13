@@ -71,23 +71,6 @@
     </div>
   </div>
 
-  <div class = "form-row">
-    <div class="elementoForm">
-      <label for="">@isset($fornecedor)Nova @endisset Senha</label>
-      <br>
-      <input name = "password" type="password" @isset($fornecedor) placeholder="Caso não queira alterar a senha basta deixar esse campo em branco" @endisset>
-    </div>
-  </div>
-
-  <div class = "form-row">
-    <div class="elementoForm">
-      <label for="">Confirmar senha</label>
-      <br>
-      <input name = "confirmarSenha" type="password" @isset($fornecedor) placeholder="Caso não queira alterar a senha basta deixar esse campo em branco" @endisset>
-    </div>
-  </div>
-  
-  
   <div class = "form-last-row" style = "padding-top:2rem;">
     <div class="buttonSubmit">
       <button type = "submit">

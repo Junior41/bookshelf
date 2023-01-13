@@ -42,22 +42,33 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-      <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="/livro/create">Cadastrar livro</a>
-        <a href="/categoria/create">Cadastrar categoria</a>
-        <a href="/socio/create">Cadastrar sócio</a>
-        <a href="/administrador/create">Cadastrar administrador</a>
-        <a href="/exemplar/create">Cadastrar exemplar</a>
-        <a href="/fornecedor/create">Cadastrar fornecedor</a>
-      </div>
+        <div id="mySidenav" class="sidenav">
+          <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type = "submit" id = "sair" >Sair</button>
+          </form>
+          @if(Auth::user()->acesso > 0)
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/livro/create">Cadastrar livro</a>
+            <a href="/categoria/create">Cadastrar categoria</a>
+            <a href="/socio/create">Cadastrar sócio</a>
+            <a href="/exemplar/create">Cadastrar exemplar</a>
+            <a href="/fornecedor/create">Cadastrar fornecedor</a>
+            @if(Auth::user()->acesso > 1)
+              <a href="/administrador/create">Cadastrar administrador</a>
+              <a href="/funcionario/create">Cadastrar funcionário</a>
+            @endif
+          @endif
+        </div>
 
  
       <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img src="/assets/img/Vector.png" alt=""></span> 
 
       <div class = "user">
         <img src="/assets/img/perfil-de-usuario.png" alt="usuário">
-        <h5>Junior</h5>
+        <div style = "display:flex; justify-content:center; width:100%;">
+          <h5>{{Auth::user()->name}} </h5>
+        </div>
       </div>
 
       <div class = "logo">

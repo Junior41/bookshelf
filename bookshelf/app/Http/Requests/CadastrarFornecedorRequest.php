@@ -28,15 +28,12 @@ class CadastrarFornecedorRequest extends FormRequest
             "endereco" => ['required'],
             "nome" => ['required'],
             "status" => ['required'],
-            "password" => ['required'],
-            "confirmarSenha" => ['required', 'same:password'],
         ];
     }
 
     public function messages()
     {
         return [
-            "same" => ['O campo senha e confirmação de senha devem ser iguais.'],
             "required" => ['Preencha todos os campos obrigátorios.'],
         ];
     }

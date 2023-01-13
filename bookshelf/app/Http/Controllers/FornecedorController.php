@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Fornecedor;
-
+use Auth;
 use App\Http\Requests\CadastrarFornecedorRequest;
 use App\Http\Requests\EditarFornecedorRequest;
 
@@ -18,7 +18,10 @@ class FornecedorController extends Controller
     {
         $this->fornecedor = $fornecedor;
         $this->user = $user;
+        $this->middleware('auth');
+        
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,6 +32,7 @@ class FornecedorController extends Controller
         //
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,6 +40,10 @@ class FornecedorController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+    
+
         return view('fornecedor');
     }
 
@@ -47,11 +55,12 @@ class FornecedorController extends Controller
      */
     public function store(CadastrarFornecedorRequest $request)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $data = $request->all();
 
         $fornecedor = $this->fornecedor->find($data['CNPJ']);
-
-        unset($data['confirmarSenha']);
 
         if(mb_strpos($data['CNPJ'], '.') || mb_strpos($data['CNPJ'], '-') | mb_strpos($data['CNPJ'], ','))
             return redirect('fornecedor/create')->with('error', 'Inseira o CNPJ sem máscara. Máscaras são pontos, hífens e vírgulas.');
@@ -59,9 +68,6 @@ class FornecedorController extends Controller
         if($fornecedor)
             return redirect('fornecedor/create')->with('error', 'O CNPJ informado já está cadastrado.');
         
-        $data['password'] = \Hash::make($data['password']);
-
-
         $this->fornecedor->create($data);
 
         return redirect('fornecedor/create')->with('success', 'Fornecedor cadastrado com sucesso!');
@@ -87,6 +93,9 @@ class FornecedorController extends Controller
      */
     public function edit($CNPJ)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $fornecedor = $this->fornecedor->find($CNPJ);
         $user = $this->user->find($CNPJ);
 
@@ -102,17 +111,13 @@ class FornecedorController extends Controller
      */
     public function update(EditarFornecedorRequest $request, $cnpj)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+            
         $fornecedor = $this->fornecedor->find($cnpj);
 
         $data = $request->all();
         $data['cnpj'] = $fornecedor->cnpj; // cnpj Não é alterado.
-
-        if($request['password']){ // alterar senha
-            $data['password'] = \Hash::make($data['password']);
-            unset($data['confirmarSenha']);
-        }else
-            $data['password'] = $fornecedor->password; // senha permanece a mesma
-        
 
         $fornecedor->update($data);
 

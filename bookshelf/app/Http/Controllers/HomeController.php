@@ -13,6 +13,7 @@ class HomeController extends Controller
     public function __construct(Livro $livro)
     {
         $this->livro = $livro;
+        $this->middleware('auth');
     }
 
 

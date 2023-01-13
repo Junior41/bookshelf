@@ -9,7 +9,7 @@ use App\Models\Funcionario;
 
 use App\Http\Requests\CadastrarFuncionarioRequest;
 use App\Http\Requests\EditarFuncionarioRequest;
-
+use Auth;
 class FuncionarioController extends Controller
 {
     private $funcionario, $user;
@@ -18,7 +18,9 @@ class FuncionarioController extends Controller
     {
         $this->funcionario = $funcionario;
         $this->user = $user;
+        $this->middleware('auth');     
     }
+    
     /**
      * Display a listing of the resource.
      *
@@ -36,6 +38,9 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->acesso < 2)
+            return redirect('/home');
+
         return view('funcionario');
     }
 
@@ -47,9 +52,13 @@ class FuncionarioController extends Controller
      */
     public function store(CadastrarFuncionarioRequest $request)
     {
+        if(auth()->user()->acesso < 2)
+            return redirect('/home');
+        
         $dataUser = $request->all();
         $dataFuncionario['CPF'] = $dataUser['CPF'];
         $dataFuncionario['status'] = $dataUser['status'];
+        $dataUser['acesso'] = 1;
 
         unset($dataUser['confirmarSenha']);
         unset($dataUser['status']);
@@ -94,6 +103,9 @@ class FuncionarioController extends Controller
      */
     public function edit($CPF)
     {
+        if(auth()->user()->acesso < 2)
+            return redirect('/home');
+        
         $funcionario = $this->funcionario->find($CPF);
         $user = $this->user->find($CPF);
 
@@ -109,10 +121,14 @@ class FuncionarioController extends Controller
      */
     public function update(EditarFuncionarioRequest $request, $cpf)
     {
+        if(auth()->user()->acesso < 2)
+            return redirect('/home');
+        
         $user = $this->user->find($cpf);
         $funcionario = $this->funcionario->find($cpf);
 
         $dataUser = $request->all();
+        $dataUser['acesso'] = 0;
         $dataFuncionario['CPF'] = $funcionario->CPF; // CPF Não é alterado.
         $dataFuncionario['status'] = $dataUser['status'];
         unset($dataUser['status']);

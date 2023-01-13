@@ -6,7 +6,7 @@ use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Requests\CadastrarCategoriaRequest;
 use App\Http\Requests\EditarCategoriaRequest;
-
+use Auth;
 
 class CategoriaController extends Controller
 {
@@ -15,7 +15,9 @@ class CategoriaController extends Controller
     public function __construct(Categoria $categoria)
     {
         $this->categoria = $categoria;
+        $this->middleware('auth');
     }
+    
     /**
      * Display a listing of the resource.
      *
@@ -33,6 +35,9 @@ class CategoriaController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         return view('categoria');
     }
 
@@ -44,6 +49,9 @@ class CategoriaController extends Controller
      */
     public function store(cadastrarCategoriaRequest $request)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $data = $request->all();
 
         $this->categoria->create($data);
@@ -70,6 +78,9 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $categoria = $this->categoria->find($id);
 
         return view('categoria', compact('categoria'));
@@ -84,6 +95,9 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+            
         $data = $request->all();
         $elemento = $this->categoria->find($id);
 

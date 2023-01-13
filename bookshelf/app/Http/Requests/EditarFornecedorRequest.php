@@ -27,14 +27,12 @@ class EditarFornecedorRequest extends FormRequest
             "endereco" => ['required'],
             "nome" => ['required'],
             "status" => ['required'],
-            "confirmarSenha" => ['same:password'],
         ];
     }
 
     public function messages()
     {
         return [
-            "same" => ['O campo senha e confirmação de senha devem ser iguais.'],
             "required" => ['Preencha todos os campos obrigátorios.'],
         ];
     }

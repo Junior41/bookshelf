@@ -18,11 +18,12 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => "junior",
-            'CPF' => fake()->unique()->safeEmail(),
+            'name' => "admin",
+            'CPF' => "admin",
             'email' => fake()->unique()->safeEmail(),
+            'acesso' => 2,
             'email_verified_at' => now(),
-            'password' => \Hash::make('junior123'), // password
+            'password' => \Hash::make('admin'), // password
             'remember_token' => Str::random(10),
         ];
     }

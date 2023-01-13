@@ -7,7 +7,7 @@ use App\Models\Exemplar;
 use App\Models\Livro;
 use App\Models\Socio;
 use App\Models\Fornecedor;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CadastrarExemplarRequest;
 use App\Http\Requests\EditarExemplarRequest;
@@ -22,6 +22,7 @@ class ExemplarController extends Controller
         $this->socio = $socio;
         $this->exemplar = $exemplar;
         $this->livro = $livro;
+        $this->middleware('auth');
     }
 
     /**
@@ -41,6 +42,9 @@ class ExemplarController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         return view('exemplar');
     }
 
@@ -52,6 +56,9 @@ class ExemplarController extends Controller
      */
     public function store(CadastrarExemplarRequest $request)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $data = $request->all();
         $quantidade = $data['quantidadeExe'];
 
@@ -115,6 +122,9 @@ class ExemplarController extends Controller
      */
     public function edit($codigo)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+
         $exemplar = $this->exemplar->where('codigo', $codigo)->first();
 
         return view('exemplar', compact('exemplar'));
@@ -129,6 +139,9 @@ class ExemplarController extends Controller
      */
     public function update(EditarExemplarRequest $request, $codigo)
     {
+        if(auth()->user()->acesso < 1)
+            return redirect('/home');
+            
         $data = $request->all();
 
         $exemplar = $this->exemplar->find($codigo);

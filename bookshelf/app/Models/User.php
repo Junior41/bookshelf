@@ -22,7 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'CPF',
-        'email'
+        'email',
+        'acesso',
     ];
 
     protected $primaryKey = 'CPF';

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Administrador;
+use Auth;
 
 use App\Http\Requests\CadastrarAdministradorRequest;
 use App\Http\Requests\EditarAdministradorRequest;
@@ -20,7 +21,10 @@ class AdministradorController extends Controller
     {
         $this->administrador = $administrador;
         $this->user = $user;
+        $this->middleware('auth');
+        
     }
+    
     /**
      * Display a listing of the resource.
      *
@@ -38,6 +42,9 @@ class AdministradorController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->acesso < 2)
+            return redirect('/home');
+
         return view('administrador');
     }
 
@@ -49,7 +56,11 @@ class AdministradorController extends Controller
      */
     public function store(CadastrarAdministradorRequest $request)
     {
+        if(auth()->user()->acesso < 2)
+            return redirect('/home');
+
         $dataUser = $request->all();
+        $dataUser['acesso'] = 2;
         $dataAdministrador['CPF'] = $dataUser['CPF'];
 
         unset($dataUser['confirmarSenha']);
@@ -94,6 +105,9 @@ class AdministradorController extends Controller
      */
     public function edit($CPF)
     {
+        if(auth()->user()->acesso < 2)
+            return redirect('/home');
+
         $administrador = $this->administrador->find($CPF);
         $user = $this->user->find($CPF);
 
@@ -109,7 +123,11 @@ class AdministradorController extends Controller
      */
     public function update(EditarAdministradorRequest $request, $cpf)
     {
+        if(auth()->user()->acesso < 2)
+            return redirect('/home');
+            
         $user = $this->user->find($cpf);
+        $dataUser['acesso'] = 2;
         $administrador = $this->administrador->find($cpf);
 
         $dataUser = $request->all();

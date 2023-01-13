@@ -47,7 +47,7 @@
             <img src="/assets/img/logo-removebg-preview 1.png" alt="logo bookshelf">
           </div>
           <div class = "botaoMenu">
-            <a href = "/">Menu inicial</a>
+            <a href = "/home">Menu inicial</a>
           </div>
           <div class = "botaoMenu">
             <a href = "/livro/create">Cadastrar livro</a>
@@ -56,14 +56,16 @@
             <a href = "/categoria/create">Cadastrar categoria</a>
           </div>
           <div class = "botaoMenu">
-            <a href = "/funcionario/create">Cadastrar Funcionário</a>
-          </div>
-          <div class = "botaoMenu">
             <a href = "/socio/create">Cadastrar sócio</a>
           </div>
-          <div class = "botaoMenu">
-            <a href = "/administrador/create">Cadastrar Administrador</a>
-          </div>
+          @if(Auth::user()->acesso > 1)
+            <div class = "botaoMenu">
+              <a href = "/administrador/create">Cadastrar Administrador</a>
+            </div>
+            <div class = "botaoMenu">
+              <a href = "/funcionario/create">Cadastrar Funcionário</a>
+            </div>
+          @endif
           <div class = "botaoMenu">
             <a href = "/exemplar/create">Cadastrar Exemplar</a>
           </div>

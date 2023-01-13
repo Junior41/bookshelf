@@ -28,7 +28,6 @@ class CadastrarSocioRequest extends FormRequest
             "CPF" => ['required'],
             "endereco" => ['required'],
             "email" => ['required'],
-            "status" => ['required'],
             "password" => ['required'],
             "confirmarSenha" => ['required', 'same:password'],
         ];

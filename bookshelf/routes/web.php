@@ -15,22 +15,29 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/filtro', [App\Http\Controllers\HomeController::class, 'filtroNome']);
-Route::post('/filtro', [App\Http\Controllers\HomeController::class, 'filtroNome']);
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/', [App\Http\Controllers\InitController::class, 'index']);
+Route::post('/cadastrarSocio', [App\Http\Controllers\InitController::class, 'cadastro']);
 
+Route::group(['middleware' => 'auth'], function() {
 
-Route::resource('/fornecedor', App\Http\Controllers\FornecedorController::class);
+    Route::get('/filtro', [App\Http\Controllers\HomeController::class, 'filtroNome']);
 
-Route::resource('/exemplar', App\Http\Controllers\ExemplarController::class);
+    Route::post('/filtro', [App\Http\Controllers\HomeController::class, 'filtroNome']);
 
-Route::resource('/administrador', App\Http\Controllers\AdministradorController::class);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::resource('/funcionario', App\Http\Controllers\FuncionarioController::class);
+    Route::resource('/fornecedor', App\Http\Controllers\FornecedorController::class);
 
-Route::resource('/socio', App\Http\Controllers\SocioController::class);
+    Route::resource('/exemplar', App\Http\Controllers\ExemplarController::class);
 
-Route::resource('/livro', App\Http\Controllers\LivroController::class);
+    Route::resource('/administrador', App\Http\Controllers\AdministradorController::class);
 
-Route::resource('/categoria', App\Http\Controllers\CategoriaController::class);
+    Route::resource('/funcionario', App\Http\Controllers\FuncionarioController::class);
+
+    Route::resource('/socio', App\Http\Controllers\SocioController::class);
+
+    Route::resource('/livro', App\Http\Controllers\LivroController::class);
+
+    Route::resource('/categoria', App\Http\Controllers\CategoriaController::class);
+});
