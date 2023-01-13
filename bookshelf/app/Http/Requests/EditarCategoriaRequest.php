@@ -28,4 +28,11 @@ class CadastrarCategoriaRequest extends FormRequest
             "faixaEtaria" => ["required"]
         ];
     }
+
+    public function messages()
+    {
+        return [
+            "required" => ['Preencha todos os campos obrigátorios.'],
+        ];
+    }
 }
