@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Socio extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'CPF',
+        'status',
+        'endereco',
+    ];
+
+    protected $primaryKey = 'CPF';
+
 }

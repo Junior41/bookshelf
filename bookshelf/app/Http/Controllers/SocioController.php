@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Socio;
+
+use App\Http\Requests\CadastrarSocioRequest;
+use App\Http\Requests\EditarSocioRequest;
+
 use Illuminate\Http\Request;
 
-use App\Models\User;
-use App\Models\Funcionario;
-
-use App\Http\Requests\CadastrarFuncionarioRequest;
-use App\Http\Requests\EditarFuncionarioRequest;
-
-class FuncionarioController extends Controller
+class SocioController extends Controller
 {
-    private $funcionario, $user;
+    private $socio, $user;
 
-    public function __construct(Funcionario $funcionario, User $user)
+    public function __construct(Socio $socio, User $user)
     {
-        $this->funcionario = $funcionario;
+        $this->socio = $socio;
         $this->user = $user;
     }
     /**
@@ -36,7 +36,7 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
-        return view('funcionario');
+        return view('socio');
     }
 
     /**
@@ -45,33 +45,35 @@ class FuncionarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CadastrarFuncionarioRequest $request)
+    public function store(CadastrarSocioRequest $request)
     {
         $dataUser = $request->all();
-        $dataFuncionario['CPF'] = $dataUser['CPF'];
-        $dataFuncionario['status'] = $dataUser['status'];
+        $dataSocio['CPF'] = $dataUser['CPF'];
+        $dataSocio['endereco'] = $dataUser['endereco'];
+        $dataSocio['status'] = $dataUser['status'];
 
         unset($dataUser['confirmarSenha']);
         unset($dataUser['status']);
+        unset($dataUser['endereco']);
 
         $user = $this->user->find($request->CPF);
 
         if(mb_strpos($dataUser['CPF'], '.') || mb_strpos($dataUser['CPF'], '-') | mb_strpos($dataUser['CPF'], ','))
-            return redirect('funcionario/create')->with('error', 'Inseira o CPF sem máscara. Máscaras são pontos, hífens e vírgulas.');
+            return redirect('socio/create')->with('error', 'Inseira o CPF sem máscara. Máscaras são pontos, hífens e vírgulas.');
         
         if($user)
-            return redirect('funcionario/create')->with('error', 'O CPF informado já está cadastrado.');
+            return redirect('socio/create')->with('error', 'O CPF informado já está cadastrado.');
         
         $emails_iguais = $this->user->where('email', $dataUser['email'])->first();
         if($emails_iguais)
-            return redirect('funcionario/create')->with('error', 'O email informado já está cadastrado.');
+            return redirect('socio/create')->with('error', 'O email informado já está cadastrado.');
         
         $dataUser['password'] = \Hash::make($dataUser['password']);
 
         $this->user->create($dataUser);
-        $this->funcionario->create($dataFuncionario);
+        $this->socio->create($dataSocio);
 
-        return redirect('funcionario/create')->with('success', 'Funcionário cadastrado com sucesso!');
+        return redirect('socio/create')->with('success', 'Sócio cadastrado com sucesso!');
 
     }
 
@@ -94,10 +96,10 @@ class FuncionarioController extends Controller
      */
     public function edit($CPF)
     {
-        $funcionario = $this->funcionario->find($CPF);
+        $socio = $this->socio->find($CPF);
         $user = $this->user->find($CPF);
 
-        return view('funcionario', compact('funcionario', 'user'));
+        return view('socio', compact('socio', 'user'));
     }
 
     /**
@@ -107,21 +109,22 @@ class FuncionarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditarFuncionarioRequest $request, $cpf)
+    public function update(EditarSocioRequest $request, $cpf)
     {
         $user = $this->user->find($cpf);
-        $funcionario = $this->funcionario->find($cpf);
+        $socio = $this->socio->find($cpf);
 
+          
         $dataUser = $request->all();
-        $dataFuncionario['CPF'] = $funcionario->CPF; // CPF Não é alterado.
-        $dataFuncionario['status'] = $dataUser['status'];
+        $datasocio['CPF'] = $socio->CPF; // CPF Não é alterado.
+        $datasocio['status'] = $dataUser['status'];
+        $datasocio['endereco'] = $dataUser['endereco'];
         unset($dataUser['status']);
-
+        unset($dataUser['endereco']);
 
         $emails_iguais = $this->user->where('email', $dataUser['email'])->first();
         if($emails_iguais && $dataUser['email'] != $user->email)
-            return redirect('funcionario/'.$cpf.'/edit')->with('error', 'O email informado já está cadastrado.');
-
+            return redirect('socio/'.$cpf.'/edit')->with('error', 'O email informado já está cadastrado.');
 
         if($request['password']){ // alterar senha
             $dataUser['password'] = \Hash::make($dataUser['password']);
@@ -130,11 +133,11 @@ class FuncionarioController extends Controller
             $dataUser['password'] = $user->password; // senha permanece a mesma
         
 
-        $funcionario->update($dataFuncionario);
+        $socio->update($datasocio);
         $user->update($dataUser);
 
 
-        return redirect('funcionario/'.$cpf.'/edit')->with('success', 'Funcionário editado com sucesso!');
+        return redirect('socio/'.$cpf.'/edit')->with('success', 'Sócio editado com sucesso!');
     }
 
     /**

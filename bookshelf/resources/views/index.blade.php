@@ -46,7 +46,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="/livro/create">Cadastrar livro</a>
         <a href="/categoria/create">Cadastrar categoria</a>
-        <a href="#">Clients</a>
+        <a href="/socio/create">Cadastrar sócio</a>
         <a href="#">Contact</a>
       </div>
 

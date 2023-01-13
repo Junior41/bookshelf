@@ -59,7 +59,7 @@
             <a href = "/funcionario/create">Cadastrar Funcionário</a>
           </div>
           <div class = "botaoMenu">
-            <a href = "#">Menu inicial</a>
+            <a href = "/socio/create">Cadastrar sócio</a>
           </div>
         </div>
 
