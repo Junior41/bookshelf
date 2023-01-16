@@ -33,6 +33,9 @@ Cadastrar livro
   @method("PUT")
   @endisset
   @csrf
+
+  @isset($livro)
+  @else
   <div class = "form-row">
     <div class="elementoForm">
       <label for="">Código do livro</label>
@@ -40,6 +43,7 @@ Cadastrar livro
       <input name = "codigo" @isset($livro) value = "{{$livro->codigo}}" @endisset required type="text">
     </div>
   </div>
+  @endisset
 
   <div class = "form-row">
     <div class="elementoForm">

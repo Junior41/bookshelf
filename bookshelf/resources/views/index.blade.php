@@ -47,8 +47,9 @@
             @csrf
             <button type = "submit" id = "sair" >Sair</button>
           </form>
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           @if(Auth::user()->acesso > 0)
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/exemplar/entregar">Entregar exemplar</a>
             <a href="/livro/create">Cadastrar livro</a>
             <a href="/categoria/create">Cadastrar categoria</a>
             <a href="/socio/create">Cadastrar sócio</a>
@@ -107,7 +108,7 @@
           @isset($livros)
             @foreach ($livros as $livro)
                 <div class="col-xl-3 col-lg-4 col-md-6">
-                  <a href = "#" class="gallery-item h-100">
+                  <a href = "#" class="gallery-item h-100" data-toggle="modal" data-target="#modal-detalhes" data-id="{{ $livro->codigo }}" >
                     <div style = "display:flex;justify-content: center;">
                       <img src= "{{url("storage/{$livro->capa}")}}" class="img-fluid" alt="">
                     </div>
@@ -170,6 +171,55 @@
     <div class="line"></div>
   </div>
 
+
+  <!-- Modal Detalhes -->
+  <div id="modal-detalhes" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class = "modal-content">
+        <div class = "detalhes-imagem">
+          <img id = "detalhes-imagem" alt="capa do livro">
+        </div>
+        <div class = "detalhes-livro">
+          <div class = "item-detalhes">
+            <h6>Titulo: </h6>
+            <input type="text" id = "detalhes-nome">
+          </div>
+          <div class = "item-detalhes">
+            <h6>Autor: </h6>
+            <input type="text" id = "detalhes-autor">
+          </div>
+          <div class = "d-flex" style = "width:100%;">
+            <div class="item-detalhes">
+              <h6>Editora: </h6>
+              <input type = "text" id = "detalhes-editora">
+            </div>
+            <div class="item-detalhes" style = "margin-left:1rem;">
+              <h6>Categoria: </h6>
+              <input type = "text" id = "detalhes-categoria">
+            </div>
+          </div>
+          <div class = "d-flex" style = "width:100%;">
+            <div class="item-detalhes">
+              <h6>Qtd de páginas: </h6>
+              <input type = "text" id = "detalhes-paginas">
+            </div>
+            <div class="item-detalhes" style = "margin-left:1rem;">
+              <h6>Qtd de exemplares: </h6>
+              <input type = "text" id = "detalhes-exemplares">
+            </div>
+          </div>
+          <div class = "detalhes-botao">
+            @if(Auth::user()->acesso > 0)
+            <a id = "btn-editar" style = "margin-right:1rem">Editar</a>
+            @endif
+            <a id = "btn-reservar" >Reservar</a>
+            <a href="#" style = "margin-left:1rem" data-dismiss="modal">Fechar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
@@ -187,6 +237,26 @@
     function closeNav() {
       document.getElementById("mySidenav").style.width = "0";
     }
+
+    $('#modal-detalhes').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        let modal = $(this)
+
+        const id = button.data('id')
+        const url = 'livro/' + id;
+        
+        $.getJSON(url,(resposta) => {
+            $("#detalhes-nome").val(resposta.nome);
+            $("#detalhes-autor").val(resposta.autor);
+            $("#detalhes-editora").val(resposta.editora);
+            $("#detalhes-exemplares").val(resposta.quantidadeExemplares);
+            $("#detalhes-paginas").val(resposta.quantidadePag);
+            $("#detalhes-categoria").val(resposta.nome_categoria);
+            $('#detalhes-imagem').attr('src', '/storage/'+ resposta.capa)
+            $('#btn-reservar').attr('href', '/exemplar/reservar/'+ resposta.codigo)
+            $('#btn-editar').attr('href', '/livro/'+ resposta.codigo + '/edit')
+        });
+    })
   </script>
 
 </body>

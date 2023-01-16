@@ -26,6 +26,9 @@ class Livro extends Model
 
 
     public function categoria(){
-        return $this->hasOne(Categoria::class, 'categoria_id');
+        return $this->hasOne(Categoria::class, 'id', 'categoria_id');
+    }
+    public function exemplares(){
+        return $this->hasMany(Exemplar::class, 'codigo', 'codigo');
     }
 }

@@ -1850,3 +1850,91 @@ form .element{
   padding: 10rem 2rem 10rem 2rem;
 }
 
+/*
+------------------------------
+  DETALHES LIVRO
+------------------------------
+*/
+
+
+.modal-content{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 3rem 1rem 3rem 1rem;
+  color: #000;
+  text-align: center;
+}
+.modal-content .detalhes-imagem{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content .detalhes-imagem img{
+  max-width: 15rem;
+  max-height: 15rem;
+}
+.item-detalhes{
+  display: flex;
+  margin-bottom: 1rem;
+  width: 100%;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.item-detalhes h6{
+  margin: 0;
+}
+.item-detalhes input{
+  border: none;
+  background-color: #8C0F3D1C;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  margin-left: 0.5rem;
+  width: 100%;
+}
+.detalhes-botao{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+.detalhes-botao a{
+  padding: 1rem;
+  background-color: #8C0F3D;
+  border: none;
+  border-radius: 8px;
+  color: #FFF;
+  width: 8rem;
+  transition: 1s;
+  font-weight: bold;
+}
+
+.detalhes-botao a:hover{
+  background-color: #AE2F5F;
+}
+
+
+@media(max-width: 1000px){
+  .detalhes-livro{
+    padding-left: 1rem;
+  }
+  .detalhes-livro .d-flex{
+    display: block !important;
+  }
+  .modal-content{
+    display: block;
+  }
+  .detalhes-imagem{
+    padding-bottom: 3rem;
+  }
+  .item-detalhes{
+    margin-left: 0 !important;
+  }
+  .detalhes-botao{
+    margin-top: 3rem;
+  }
+
+}

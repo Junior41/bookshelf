@@ -49,6 +49,10 @@
           <div class = "botaoMenu">
             <a href = "/home">Menu inicial</a>
           </div>
+          @if(Auth::user()->acesso > 0)
+          <div class = "botaoMenu">
+            <a href = "/exemplar/entregar">Entregar exemplar</a>
+          </div>
           <div class = "botaoMenu">
             <a href = "/livro/create">Cadastrar livro</a>
           </div>
@@ -72,6 +76,7 @@
           <div class = "botaoMenu">
             <a href = "/fornecedor/create">Cadastrar Fornecedor</a>
           </div>
+          @endif
         </div>
 
         <!--

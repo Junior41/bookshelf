@@ -87,7 +87,9 @@ class LivroController extends Controller
      */
     public function show($id)
     {
-        //
+        $livro = $this->livro->find($id);
+        $livro->nome_categoria = $livro->categoria()->first()->nome;
+        return json_encode($livro);
     }
 
     /**
@@ -121,6 +123,7 @@ class LivroController extends Controller
             
         $data = $request->all();
         $categorias = $this->categoria->all();
+        $data['codigo'] = $codigo;
 
         $livro = $this->livro->where('codigo', $codigo)->first();
 

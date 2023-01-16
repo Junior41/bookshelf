@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditarLivroRequest extends FormRequest
+class ReservarExemplarRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,7 @@ class EditarLivroRequest extends FormRequest
     public function rules()
     {
         return [
-            "nome" => ["required"],
-            "autor" => ['required'],
-            "editora" => ['required'],
-            "quantidadePag" => ["required"],
-            "avaliacao" => ["required"],
-            "categoria_id" => ["required"],
+            "entrega" => ['required'],
         ];
     }
 

@@ -29,6 +29,10 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('/fornecedor', App\Http\Controllers\FornecedorController::class);
 
+    Route::get('/exemplar/reservar/{codigo}', [App\Http\Controllers\ExemplarController::class, 'show_reservar']);
+    Route::put('/exemplar/reservar/{codigo}', [App\Http\Controllers\ExemplarController::class, 'reservar']);
+    Route::get('/exemplar/entregar', [App\Http\Controllers\ExemplarController::class, 'show_entregar']);
+    Route::put('/exemplar/entregar', [App\Http\Controllers\ExemplarController::class, 'entregar']);
     Route::resource('/exemplar', App\Http\Controllers\ExemplarController::class);
 
     Route::resource('/administrador', App\Http\Controllers\AdministradorController::class);

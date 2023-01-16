@@ -15,4 +15,7 @@ class Exemplar extends Model
         'CNPJFornecedor',
     ];
 
+    public function livro(){
+        return $this->hasOne(Livro::class, 'codigo', 'codigo');
+    }
 }

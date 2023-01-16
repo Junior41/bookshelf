@@ -10,6 +10,8 @@ use App\Models\Fornecedor;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CadastrarExemplarRequest;
+use App\Http\Requests\EntregarExemplarRequest;
+use App\Http\Requests\ReservarExemplarRequest;
 use App\Http\Requests\EditarExemplarRequest;
 
 class ExemplarController extends Controller
@@ -30,6 +32,51 @@ class ExemplarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function show_entregar(){
+        return view('reservar');
+    }
+    public function entregar(EntregarExemplarRequest $request){
+        $exemplar = $this->exemplar->where('codigo', $request->codigo)
+                                    ->where('dataEntrega', $request->entrega)
+                                    ->first();
+        if(!$exemplar)
+            return redirect('/exemplar/entregar')->with('error', 'Data de entrega e código informados não equivalem a nenhum exemplar emprestado.');
+        
+        $livro = $exemplar->livro()->get()[0];
+
+        $livro->quantidadeExemplares++;
+        $exemplar->emprestado = 0;
+        $exemplar->dataEntrega = NULL;
+
+        $exemplar->save();
+        $livro->save();
+
+        return redirect('/exemplar/entregar')->with('success', 'Exemplar resolvido com sucesso.');
+        
+    }
+
+    public function show_reservar($codigo){
+        $livro = $this->livro->find($codigo);
+        $exemplar = $livro->exemplares()->first();
+
+        return view('reservar', compact('exemplar'));
+    }
+
+    public function reservar(ReservarExemplarRequest $request, $codigo){
+        $exemplar = $this->exemplar->find($codigo);
+        $livro = $exemplar->livro()->get()[0];
+        $exemplar->emprestado = 1;
+        $exemplar->dataEntrega = $request->entrega;
+        $livro->quantidadeExemplares--;
+        
+        $exemplar->save();
+        $livro->save();
+        
+        return redirect('/home')->with('success', 'Exemplar reservado com sucesso.');
+
+    }
+
     public function index()
     {
         //
