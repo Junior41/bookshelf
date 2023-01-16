@@ -22,6 +22,7 @@ class Livro extends Model
     ];
 
     protected $primaryKey = 'codigo';
+    protected $keyType = 'string';
 
 
     public function categoria(){

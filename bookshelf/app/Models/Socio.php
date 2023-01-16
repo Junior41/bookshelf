@@ -16,5 +16,6 @@ class Socio extends Model
     ];
 
     protected $primaryKey = 'CPF';
+    protected $keyType = 'string';
 
 }

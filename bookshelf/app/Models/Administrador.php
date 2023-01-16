@@ -14,4 +14,5 @@ class Administrador extends Model
     ];
 
     protected $primaryKey = 'CPF';
+    protected $keyType = 'string';
 }

@@ -27,6 +27,7 @@ class User extends Authenticatable
     ];
 
     protected $primaryKey = 'CPF';
+    protected $keyType = 'string';
 
     /**
      * The attributes that should be hidden for serialization.

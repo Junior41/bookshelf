@@ -17,4 +17,5 @@ class Fornecedor extends Model
     ];
 
     protected $primaryKey = 'CNPJ';
+    protected $keyType = 'string';
 }

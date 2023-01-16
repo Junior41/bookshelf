@@ -15,5 +15,6 @@ class Funcionario extends Model
     ];
 
     protected $primaryKey = 'CPF';
+    protected $keyType = 'string';
 
 }

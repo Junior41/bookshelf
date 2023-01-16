@@ -103,7 +103,7 @@ class LivroController extends Controller
 
         $livro = $this->livro->where('codigo', $codigo)->first();
         $categorias = $this->categoria->all();
-        
+
         return view('livro', compact('livro', 'categorias'));
     }
 

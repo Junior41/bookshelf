@@ -17,8 +17,8 @@
     
 
   <!-- Favicons -->
-  <link href="{{asset('assets/img/favicon.png')}}" rel="icon">
-  <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+  <link href="{{asset('assets/img/icone.png')}}" rel="icon">
+  <link href="{{asset('assets/img/icone.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,7 +66,7 @@
 
       <div class = "user">
         <img src="/assets/img/perfil-de-usuario.png" alt="usuário">
-        <div style = "display:flex; justify-content:center; width:100%;">
+        <div>
           <h5>{{Auth::user()->name}} </h5>
         </div>
       </div>
