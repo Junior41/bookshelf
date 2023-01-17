@@ -180,9 +180,15 @@
           <img id = "detalhes-imagem" alt="capa do livro">
         </div>
         <div class = "detalhes-livro">
-          <div class = "item-detalhes">
-            <h6>Titulo: </h6>
-            <input type="text" id = "detalhes-nome">
+          <div class = "d-flex" style = "width:100%;">
+            <div class = "item-detalhes">
+              <h6>Código: </h6>
+              <input type="text" id = "detalhes-codigo">
+            </div>
+            <div class = "item-detalhes" style = "margin-left:1rem;">
+              <h6>Titulo: </h6>
+              <input type="text" id = "detalhes-nome">
+            </div>
           </div>
           <div class = "item-detalhes">
             <h6>Autor: </h6>
@@ -247,13 +253,18 @@
         
         $.getJSON(url,(resposta) => {
             $("#detalhes-nome").val(resposta.nome);
+            $("#detalhes-codigo").val(resposta.codigo);
             $("#detalhes-autor").val(resposta.autor);
             $("#detalhes-editora").val(resposta.editora);
             $("#detalhes-exemplares").val(resposta.quantidadeExemplares);
             $("#detalhes-paginas").val(resposta.quantidadePag);
             $("#detalhes-categoria").val(resposta.nome_categoria);
             $('#detalhes-imagem').attr('src', '/storage/'+ resposta.capa)
-            $('#btn-reservar').attr('href', '/exemplar/reservar/'+ resposta.codigo)
+            if(resposta.quantidadeExemplares > 0){
+              $('#btn-reservar').attr('style', 'display:block;')
+              $('#btn-reservar').attr('href', '/exemplar/reservar/'+ resposta.codigo)
+            }else
+              $('#btn-reservar').attr('style', 'display:none;')
             $('#btn-editar').attr('href', '/livro/'+ resposta.codigo + '/edit')
         });
     })

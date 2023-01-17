@@ -52,7 +52,7 @@ class ExemplarController extends Controller
         $exemplar->save();
         $livro->save();
 
-        return redirect('/exemplar/entregar')->with('success', 'Exemplar resolvido com sucesso.');
+        return redirect('/exemplar/entregar')->with('success', 'Exemplar devolvido com sucesso.');
         
     }
 
