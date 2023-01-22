@@ -64,8 +64,8 @@ class ExemplarController extends Controller
     }
 
     public function reservar(ReservarExemplarRequest $request, $codigo){
-        $exemplar = $this->exemplar->find($codigo);
-        $livro = $exemplar->livro()->get()[0];
+        $livro = $this->livro->find($codigo);
+        $exemplar = $livro->exemplares()->get()[0];
         $exemplar->emprestado = 1;
         $exemplar->dataEntrega = $request->entrega;
         $livro->quantidadeExemplares--;
