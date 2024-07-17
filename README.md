@@ -9,7 +9,7 @@ Dentro do repositório, rodar os seguintes comandos:
 <ul>
   <li>composer install</li>
   <li>cp .env.example .env</li>
-<ul/>
+</ul>
 
 Configure o .env de acordo com suas configurações de banco de dados, depois siga com os comandos:
 
