@@ -9,7 +9,11 @@ Dentro do repositório, rodar os seguintes comandos:
 <ul>
   <li>composer install</li>
   <li>cp .env.example .env</li>
-  <li> * Configure o .env de acordo com suas configurações de banco de dados</li>
+<ul/>
+
+Configure o .env de acordo com suas configurações de banco de dados, depois siga com os comandos:
+
+<ul>
   <li>php artisan key:generate</li>
   <li>php artisan migrate</li>
   <li>php artisan db:seed</li>
