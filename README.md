@@ -17,7 +17,14 @@ Configure o .env de acordo com suas configurações de banco de dados, depois si
   <li>php artisan key:generate</li>
   <li>php artisan migrate</li>
   <li>php artisan db:seed</li>
+  <li>php artisan storage:link</li>
   <li>php artisan serve</li>
 </ul>
 
-Agora basta acessar o navegador no endereço localhost:8080
+Agora basta acessar o navegador no endereço localhost:8000, para entrar como administrador é só usar senha = cpf = admin.
+
+# Funcionamento
+
+Seguem algumas imagens do software funcionando:
+
+
