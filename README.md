@@ -27,4 +27,9 @@ Agora basta acessar o navegador no endereço localhost:8000, para entrar como ad
 
 Seguem algumas imagens do software funcionando:
 
+<img src = "/loginBookshelf.png"/>
+<img src = "/home.png"/>
+<img src = "/cadastroLivro.png"/>
+<img src = "/mostrarLivro.png"/>
+
 
